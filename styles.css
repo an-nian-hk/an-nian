@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    安念善終 — 一條龍善終服務 Landing Page Styles
    Brand: Deep Green #1F4D3F / Cream #F6F4EF / WA Green #1F7A4D
    Fonts: Noto Serif TC (display) + Noto Sans TC (body)
@@ -69,7 +69,7 @@
 
 /* ---------- Reset & Base ---------- */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: none; text-rendering: optimizeLegibility; scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust: none; text-rendering: optimizeLegibility; scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 body {
   min-height: 100dvh; line-height: 1.65; font-family: var(--font-body);
   font-size: var(--text-base); color: var(--color-text); background: var(--color-bg);
@@ -135,14 +135,13 @@ p,li { text-wrap: pretty; }
 }
 .header--scrolled { border-color:var(--color-border); box-shadow:var(--shadow-sm); }
 .header__inner { display:flex; align-items:center; gap:var(--space-6); height:100px; }
-.brand { display:flex; align-items:center; text-decoration:none; }
-.brand:hover { opacity:0.9; }
-.brand__logo-wrap { flex-shrink:0; width:100px; height:100px; border-radius:18px; background:linear-gradient(135deg, rgba(31,77,63,.06), rgba(31,77,63,.02)); display:flex; align-items:center; justify-content:center; overflow:hidden; border:2px solid rgba(31,77,63,.1); transition:all var(--transition); }
-.brand:hover .brand__logo-wrap { border-color:rgba(31,77,63,.35); box-shadow:0 4px 20px rgba(31,77,63,.15); transform:scale(1.05); }
-.brand__mark { width:78px; height:78px; object-fit:contain; }
+.brand { display:flex; align-items:center; gap:.65rem; color:var(--color-text); font-family:var(--font-display); font-weight:700; font-size:1.15rem; text-decoration:none; transition:opacity var(--transition); }
+.brand:hover { opacity:.85; }
+.brand__mark { width:44px; height:44px; object-fit:contain; filter:drop-shadow(0 1px 3px rgba(31,77,63,.2)); }
+.brand__name { letter-spacing:.03em; }
 @media (max-width:640px) { 
   .header__inner { height:72px; }
-  .brand__logo-wrap { width:54px; height:54px; border-radius:12px; }
+  
   .brand__mark { width:42px; height:42px; }
 }
 .nav { display:flex; gap:var(--space-6); margin-left:auto; }
@@ -360,3 +359,79 @@ p,li { text-wrap: pretty; }
 
 
 
+
+/* ===== Elegant Animations ===== */
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+@keyframes gentlePulse {
+  0%,100% { transform:scale(1); }
+  50% { transform:scale(1.03); }
+}
+
+/* Hero entrance */
+.hero__title { animation:fadeInUp .8s ease-out; }
+.hero__sub { animation:fadeInUp .8s .15s ease-out both; }
+.hero__cta { animation:fadeInUp .8s .3s ease-out both; }
+.trustbar { animation:fadeInUp .8s .45s ease-out both; }
+.hero__photo { animation:fadeIn .8s .3s ease-out both; }
+
+/* Section scroll reveal */
+.section { animation:fadeInUp .6s ease-out both; animation-timeline:view(); animation-range:entry 10% cover 30%; }
+
+/* Card stagger on hover */
+.svc, .pain-card, .plan, .photo-item, .rel-item {
+  transition: all var(--transition);
+}
+
+/* CTA button pulse */
+.final-cta .btn {
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+/* Image lazy load fade */
+img[loading="lazy"] {
+  animation: fadeIn .5s ease-out both;
+  animation-timeline:view();
+  animation-range:entry 5% cover 20%;
+}
+
+/* Service card icon bounce */
+.svc__icon {
+  transition: transform var(--transition-fast);
+}
+.svc:hover .svc__icon {
+  transform: scale(1.2);
+}
+
+/* Nav underline animation */
+.nav a {
+  position: relative;
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--transition);
+}
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Step number animation */
+.step__num {
+  transition: all var(--transition);
+}
+.step:hover .step__num {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(31,77,63,.25);
+}
