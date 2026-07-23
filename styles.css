@@ -238,8 +238,10 @@ p,li { text-wrap: pretty; }
 
 /* ========== About Brand ========== */
 .about__inner { display:grid; grid-template-columns:1.1fr 0.9fr; gap:var(--space-12); align-items:start; }
-.about__logo { margin-bottom:var(--space-4); }
-.about__logo-img { width:80px; height:80px; object-fit:contain; filter:drop-shadow(0 2px 8px rgba(31,77,63,.15)); }
+.about__logo { margin-bottom:var(--space-6); text-align:center; }
+.about__logo-img { width:260px; height:auto; max-width:100%; object-fit:contain; filter:drop-shadow(0 4px 20px rgba(31,77,63,.18)); transition:transform var(--transition); }
+.about__logo-img:hover { transform:scale(1.05); }
+@media (max-width:640px) { .about__logo-img { width:180px; } }
 .about__title { font-size:var(--text-xl); font-weight:700; margin-top:var(--space-3); }
 .about__text { margin-top:var(--space-4); color:var(--color-text-muted); font-size:var(--text-base); line-height:1.8; }
 .about__values ul { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
@@ -348,6 +350,7 @@ p,li { text-wrap: pretty; }
 
 @media (max-width: 980px) { .photo-gallery { grid-template-columns: repeat(2, 1fr); } .photo-item img { height: 180px; } }
 @media (max-width: 520px) { .photo-gallery { grid-template-columns: 1fr; } .photo-item img { height: 220px; } .hero__photo-caption { font-size: var(--text-2xs); } }
+
 
 
 
