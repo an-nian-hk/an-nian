@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" id="nian-logo">
+  <title>安念善終 — 蓮花瓣標誌</title>
+  <desc>Monoline lotus petal mark. Peace, remembrance, dignified farewell.</desc>
+
+  <circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="1" opacity="0.08"/>
+  <circle cx="100" cy="100" r="72" stroke="currentColor" stroke-width="0.6" opacity="0.12"/>
+  <circle cx="100" cy="100" r="2.5" fill="currentColor" opacity="0.6"/>
+
+  <!-- Top petal -->
+  <path d="M100 88 C96 72 84 50 62 32 C68 44 76 60 80 74 C84 60 90 46 100 32 C110 46 116 60 120 74 C124 60 132 44 138 32 C116 50 104 72 100 88Z"
+        stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bottom petal -->
+  <path d="M100 112 C96 128 84 150 62 168 C68 156 76 140 80 126 C84 140 90 154 100 168 C110 154 116 140 120 126 C124 140 132 156 138 168 C116 150 104 128 100 112Z"
+        stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Left petal -->
+  <path d="M112 100 C96 96 74 84 56 62 C68 68 52 60 40 62 C52 68 60 76 74 80 C60 84 46 90 40 100 C46 110 60 116 74 120 C60 124 52 132 40 138 C56 116 74 104 88 100Z"
+        stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right petal -->
+  <path d="M88 100 C104 96 126 84 144 62 C132 68 148 60 160 62 C148 68 140 76 126 80 C140 84 154 90 160 100 C154 110 140 116 126 120 C140 124 148 132 160 138 C144 116 126 104 112 100Z"
+        stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Diagonal petals (smaller) -->
+  <path d="M106 82 C114 74 126 58 142 44 C136 52 126 66 120 78 C128 86 138 98 144 106 C130 94 116 84 106 82Z"
+        stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <path d="M94 82 C86 74 74 58 58 44 C64 52 74 66 80 78 C72 86 62 98 56 106 C70 94 84 84 94 82Z"
+        stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <path d="M106 118 C114 126 126 142 142 156 C136 148 126 134 120 122 C128 114 138 102 144 94 C130 106 116 116 106 118Z"
+        stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+  <path d="M94 118 C86 126 74 142 58 156 C64 148 74 134 80 122 C72 114 62 102 56 94 C70 106 84 116 94 118Z"
+        stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+
+  <!-- Accent dots -->
+  <circle cx="100" cy="18" r="1.5" fill="currentColor" opacity="0.35"/>
+  <circle cx="100" cy="182" r="1.5" fill="currentColor" opacity="0.35"/>
+  <circle cx="18" cy="100" r="1.5" fill="currentColor" opacity="0.35"/>
+  <circle cx="182" cy="100" r="1.5" fill="currentColor" opacity="0.35"/>
+</svg>
