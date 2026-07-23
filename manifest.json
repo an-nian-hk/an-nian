@@ -1,0 +1,24 @@
+﻿{
+    "name":  "安念善終 — 一條龍善終服務",
+    "short_name":  "安念善終",
+    "description":  "陪你安放思念，從容送別所愛。一條龍殯儀服務安排，持牌夥伴協作，透明報價。",
+    "start_url":  "/index.html",
+    "display":  "standalone",
+    "background_color":  "#f6f4ef",
+    "theme_color":  "#1f4d3f",
+    "orientation":  "portrait-primary",
+    "lang":  "zh-HK",
+    "dir":  "ltr",
+    "icons":  [
+                  {
+                      "purpose":  "any maskable",
+                      "type":  "image/png",
+                      "sizes":  "192x192 512x512",
+                      "src":  "assets/logo.png"
+                  }
+              ],
+    "categories":  [
+                       "lifestyle",
+                       "utilities"
+                   ]
+}
