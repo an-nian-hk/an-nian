@@ -152,6 +152,10 @@ const WA_NUMBER = '85298593507';
 
   var playing = false;
 
+  // Pre-warm audio
+  bgm.load();
+  bgm.volume = 0.3;
+
   btn.addEventListener('click', function() {
     if (playing) {
       bgm.pause();
@@ -160,12 +164,27 @@ const WA_NUMBER = '85298593507';
       btn.title = '播放背景音樂';
       playing = false;
     } else {
+      bgm.currentTime = 0;
       bgm.volume = 0.3;
-      bgm.play().catch(function() {});
-      btn.classList.add('music-btn--on');
-      btn.setAttribute('aria-label', '暫停背景音樂');
-      btn.title = '暫停背景音樂';
-      playing = true;
+      var promise = bgm.play();
+      if (promise !== undefined) {
+        promise.then(function() {
+          btn.classList.add('music-btn--on');
+          btn.setAttribute('aria-label', '暫停背景音樂');
+          btn.title = '暫停背景音樂';
+          playing = true;
+        }).catch(function(e) {
+          // Retry once after a short delay (mobile autoplay policy)
+          setTimeout(function() {
+            bgm.play().then(function() {
+              btn.classList.add('music-btn--on');
+              btn.setAttribute('aria-label', '暫停背景音樂');
+              btn.title = '暫停背景音樂';
+              playing = true;
+            }).catch(function() {});
+          }, 300);
+        });
+      }
     }
   });
 })();
