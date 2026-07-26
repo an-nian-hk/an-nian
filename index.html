@@ -7,7 +7,7 @@
   <meta name="description" content="安念善終服務辦公室協助香港家屬協調善終及殯儀安排：殯儀館、宗教儀式、靈車、花牌、紙紮、骨灰後續。與持牌殮葬商合作，流程清楚、收費透明。WhatsApp 查詢。" />
   <meta name="keywords" content="安念善終服務辦公室,一條龍善終服務,殯儀安排,殯儀館,宗教儀式,靈車,花牌,紙紮,骨灰龕位,骨灰後續,香港殯儀,持牌殮葬商" />
   <meta name="author" content="安念善終服務辦公室 An Nian Shan Zhong" />
-  <meta name="theme-color" content="#1F4D3F" />
+  <meta name="theme-color" content="#b87830" />
   <meta property="og:title" content="安念善終服務辦公室 — 陪你安放思念，從容送別所愛" />
   <meta property="og:description" content="一條龍善終服務安排。殯儀館、宗教儀式、靈車、花牌、紙紮、骨灰後續。流程清楚、收費透明。" />
   <meta property="og:type" content="website" />
@@ -26,15 +26,17 @@
   <!-- ===== Header ===== -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <a class="brand" href="#top" aria-label="安念善終服務辦公室首頁">
-        <img class="brand__mark" src="logo.png" alt="安念善終服務辦公室" width="44" height="44" />
-        <span class="brand__name"><a href="https://an-nian-hk.github.io/an-nian/#top" class="brand-link">安念善終服務辦公室</a></span>
-      </a>
+      <div class="brand">
+        <a href="#top" aria-label="安念善終服務辦公室首頁" class="brand__link">
+          <img class="brand__mark" src="logo.png" alt="安念善終服務辦公室" width="44" height="44" />
+          <span class="brand__name">安念善終服務辦公室</span>
+        </a>
+      </div>
       <nav class="nav" aria-label="主導航">
         <a href="#brand-strategy">品牌策略</a>
         <a href="#services">服務範圍</a>
-        <a href="#plans">服務計劃</a>
         <a href="#flowers">帛事花牌</a>
+        <a href="#plans">服務計劃</a>
         <a href="#about">關於我們</a>
         <a href="#faq">常見問題</a>
       </nav>
@@ -486,7 +488,7 @@
             <p class="about__text">我們的核心價值是「陪伴」。不是冷冰冰的商業交易，而是真真切切在你們最困難的時刻，伸出援手，幫你理清每一步該怎麼辦。</p>
           </div>
           <div class="about__values">
-            <ul style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);list-style:none;">
+            <ul class="plan__grid" role="list">
               <li><span>❤️ 同理心</span>明白你正在經歷什麼</li>
               <li><span>🤲 陪伴式服務</span>每一步都在你身邊</li>
               <li><span>📖 透明誠實</span>不藏私、不糊弄</li>
@@ -548,12 +550,12 @@
 
     <!-- ===== Final CTA ===== -->
     <section class="final-cta">
-      <div class="container container--narrow" style="text-align:center">
+      <div class="container container--narrow final-cta__inner">
         <h2 class="final-cta__title">現在就 WhatsApp 聯絡我們吧</h2>
         <p class="final-cta__text">無論是需要緊急安排，還是想提前了解規劃，我們都會耐心等待聆聽你的需求。</p>
         <p class="final-cta__hotline">📞 免費諮詢喪禮服務 · 24小時專人跟進</p>
-        <a class="btn btn--lg wa-link" data-wa="你好，我想諮詢一條龍善終服務的安排。" href="#" style="background:#fff;color:var(--color-primary);margin-top:var(--space-6);display:inline-flex">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        <a class="btn btn--lg btn--final-cta wa-link" data-wa="你好，我想諮詢一條龍善終服務的安排。" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
           WhatsApp 立即聯絡
         </a>
       </div>
@@ -566,22 +568,22 @@
       <div class="footer__inner">
         <div class="footer__col">
           <p class="footer__brand"><a href="https://an-nian-hk.github.io/an-nian/#top" class="brand-link">安念善終服務辦公室</a></p>
-          <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:.5rem">陪你安放思念，從容送別所愛</p>
+          <p class="footer__tagline">陪你安放思念，從容送別所愛</p>
           <p class="footer__hotline">📞 免費諮詢喪禮服務 · 24小時專人跟進</p>
         </div>
         <div class="footer__col">
           <p class="footer__label">服務</p>
-          <p style="font-size:var(--text-sm);color:var(--color-text-muted)">殯儀館安排<br/>宗教儀式協調<br/>靈車接送<br/>花牌代訂<br/>紙紮代訂<br/>骨灰後續</p>
+          <p class="footer__list">殯儀館安排<br/>宗教儀式協調<br/>靈車接送<br/>花牌代訂<br/>紙紮代訂<br/>骨灰後續</p>
         </div>
         <div class="footer__col">
           <p class="footer__label">資訊</p>
-          <p style="font-size:var(--text-sm);color:var(--color-text-muted)">服務計劃<br/>常見問題<br/>多宗適用<br/>透明度承諾</p>
+          <p class="footer__list">服務計劃<br/>常見問題<br/>多宗適用<br/>透明度承諾</p>
         </div>
         <div class="footer__col">
           <p class="footer__label">聯絡</p>
-          <p style="font-size:var(--text-sm);color:var(--color-text-muted)">
-            <a href="https://wa.me/85298593507" class="wa-link" data-wa="你好" style="color:var(--color-primary)">WhatsApp: 852 9859 3507</a><br/>
-            即时回覆 · 專人跟進
+          <p class="footer__contact">
+            <a href="https://wa.me/85298593507" class="wa-link footer__wa" data-wa="你好">WhatsApp: 852 9859 3507</a><br/>
+            即時回覆 · 專人跟進
           </p>
         </div>
       </div>
@@ -602,6 +604,9 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+
+
 
 
 
