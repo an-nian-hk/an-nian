@@ -149,15 +149,42 @@ var bgm = document.getElementById('bgm');
 var btn = document.getElementById('musicBtn');
 
 if (bgm && btn) {
-  bgm.volume = 0.3;
+  bgm.volume = 0;
+  bgm.muted = true;
   bgm.load();
 
+  // Auto-start muted (bypass autoplay policy), then unmute at 10s
+  bgm.play().then(function() {
+    setTimeout(function() {
+      bgm.muted = false;
+      var vol = 0;
+      var fade = setInterval(function() {
+        vol += 0.03;
+        if (vol >= 0.3) { vol = 0.3; clearInterval(fade); }
+        bgm.volume = vol;
+      }, 200);
+    }, 10000);
+  }).catch(function() {
+    // Autoplay blocked: wait for first user click anywhere
+    document.addEventListener('click', function start() {
+      bgm.muted = false;
+      bgm.volume = 0.3;
+      bgm.play();
+      document.removeEventListener('click', start);
+    }, { once: true });
+  });
+
+  // Button toggle
   btn.onclick = function() {
-    if (bgm.paused) { bgm.play(); }
-    else            { bgm.pause(); }
+    if (bgm.paused) {
+      bgm.muted = false;
+      bgm.volume = 0.3;
+      bgm.play();
+    } else {
+      bgm.pause();
+    }
   };
 
   bgm.onplay  = function() { btn.classList.add('music-btn--on'); };
   bgm.onpause = function() { btn.classList.remove('music-btn--on'); };
-  bgm.onended = function() { btn.classList.remove('music-btn--on'); };
 }
