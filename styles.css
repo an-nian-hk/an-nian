@@ -1,29 +1,29 @@
 ﻿/* ============================================================
    安念善終服務辦公室 — 一條龍善終服務 Landing Page Styles
-   Brand: Deep Green #1F4D3F / Cream #F6F4EF / WA Green #1F7A4D
+   Brand: Deep Green #1F4D3F / Cream #FAF7F2 / WA Green #25A35A
    Fonts: Noto Serif TC (display) + Noto Sans TC (body)
    Design: Calm, Dignified, Transparent, Trust-building
    ============================================================ */
 
 /* ---------- Design Tokens ---------- */
 :root, [data-theme='light'] {
-  --color-bg: #f6f4ef;
-  --color-surface: #fbfaf7;
+  --color-bg: #faf7f2;
+  --color-surface: #fffdfa;
   --color-surface-2: #ffffff;
-  --color-surface-offset: #efede6;
-  --color-border: #ddd9d0;
-  --color-divider: #e6e2d8;
-  --color-text: #2b2922;
-  --color-text-muted: #6f6d65;
-  --color-text-faint: #a8a59c;
-  --color-text-inverse: #f7f5f0;
-  --color-primary: #1f4d3f;
-  --color-primary-hover: #163c30;
-  --color-primary-highlight: #e4ece8;
-  --color-wa: #1f7a4d;
-  --color-wa-hover: #155c3a;
-  --color-brand-accent: #9b6f3a;  /* 品牌暖銅色 */
-  --color-brand-accent-glow: rgba(155,111,58,0.15);
+  --color-surface-offset: #f3efe7;
+  --color-border: #e5dfd4;
+  --color-divider: #ede7db;
+  --color-text: #2d251c;
+  --color-text-muted: #7a7266;
+  --color-text-faint: #b0a89c;
+  --color-text-inverse: #faf7f2;
+  --color-primary: #1F4D3F;
+  --color-primary-hover: #173b2f;
+  --color-primary-highlight: #e8f0ec;
+  --color-wa: #25a35a;
+  --color-wa-hover: #1e8a4c;
+  --color-brand-accent: #1F4D3F;
+  --color-brand-accent-glow: rgba(31,77,63,0.12);
   --shadow-sm: 0 1px 2px rgba(40,38,30,0.06);
   --shadow-md: 0 4px 14px rgba(40,38,30,0.08);
   --shadow-lg: 0 14px 40px rgba(40,38,30,0.12);
@@ -32,23 +32,23 @@
 }
 
 [data-theme='dark'] {
-  --color-bg: #161411;
-  --color-surface: #1e1d18;
-  --color-surface-2: #24221d;
-  --color-surface-offset: #211f1a;
-  --color-border: #3a382f;
-  --color-divider: #2c2a24;
-  --color-text: #d6d3c8;
-  --color-text-muted: #8d8a7e;
-  --color-text-faint: #615e54;
+  --color-bg: #181511;
+  --color-surface: #201d17;
+  --color-surface-2: #26221b;
+  --color-surface-offset: #221f19;
+  --color-border: #3d382b;
+  --color-divider: #2e2a22;
+  --color-text: #d8d2c4;
+  --color-text-muted: #948e7e;
+  --color-text-faint: #655f54;
   --color-text-inverse: #1f1d18;
-  --color-primary: #6fae93;
-  --color-primary-hover: #5d9a80;
-  --color-primary-highlight: #2a3a32;
-  --color-wa: #4ea36f;
-  --color-wa-hover: #3f8a5c;
-  --color-brand-accent: #d4a84b;  /* 品牌暖金色 (深色模式) */
-  --color-brand-accent-glow: rgba(212,168,75,0.12);
+  --color-primary: #5a9e7e;
+  --color-primary-hover: #6db592;
+  --color-primary-highlight: #1a2e26;
+  --color-wa: #3d8a5a;
+  --color-wa-hover: #327548;
+  --color-brand-accent: #5a9e7e;
+  --color-brand-accent-glow: rgba(90,158,126,0.12);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 14px rgba(0,0,0,0.4);
   --shadow-lg: 0 14px 40px rgba(0,0,0,0.5);
@@ -73,7 +73,7 @@
 
 /* ---------- Reset & Base ---------- */
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior:smooth; -webkit-text-size-adjust: none; text-rendering: optimizeLegibility; scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: none; text-rendering: optimizeLegibility; scroll-padding-top: 4.5rem; }
 body {
   min-height: 100dvh; line-height: 1.65; font-family: var(--font-body);
   font-size: var(--text-base); color: var(--color-text); background: var(--color-bg);
@@ -143,6 +143,17 @@ p,li { text-wrap: pretty; }
 .brand:hover { opacity:.85; }
 .brand__mark { width:44px; height:44px; object-fit:contain; filter:drop-shadow(0 1px 3px rgba(31,77,63,.2)); }
 .brand__name { letter-spacing:.03em; }
+/* Brand link (inner anchor replacing nested <a>) */
+.brand__link {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  color: inherit;
+  text-decoration: none;
+  font: inherit;
+  transition: opacity var(--transition);
+}
+.brand__link:hover { opacity: 0.85; }
 @media (max-width:640px) { 
   .header__inner { height:72px; }
   
@@ -276,7 +287,7 @@ p,li { text-wrap: pretty; }
 /* ========== Final CTA ========== */
 .final-cta {
   padding-block:clamp(var(--space-16), 7vw, var(--space-24));
-  background:linear-gradient(160deg, var(--color-primary) 0%, #163c30 100%);
+  background:linear-gradient(160deg, var(--color-primary) 0%, #6b4318 100%);
   color:var(--color-text-inverse); text-align:center; position:relative; overflow:hidden;
 }
 .final-cta::before { content:''; position:absolute; inset:0; background:radial-gradient(circle at 30% 70%, rgba(31,122,77,0.15), transparent 60%); pointer-events:none; }
@@ -294,6 +305,10 @@ p,li { text-wrap: pretty; }
 .footer__label { font-size:var(--text-xs); text-transform:uppercase; letter-spacing:.08em; color:var(--color-text-faint); margin-bottom:var(--space-2); }
 .footer__col p { font-size:var(--text-sm); color:var(--color-text-muted); line-height:1.8; }
 .footer__bottom { margin-top:var(--space-8); padding-top:var(--space-5); border-top:1px solid var(--color-divider); }
+/* Footer inline replacements */
+.footer__tagline { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: .5rem; }
+.footer__list { font-size: var(--text-sm); color: var(--color-text-muted); }
+.footer__contact { font-size: var(--text-sm); color: var(--color-text-muted); }
 .footer__bottom p { font-size:var(--text-xs); color:var(--color-text-faint); }
 @media (max-width:700px) { .footer__inner { grid-template-columns:1fr 1fr; } }
 @media (max-width:460px) { .footer__inner { grid-template-columns:1fr; } }
@@ -928,3 +943,80 @@ img[loading="lazy"] {
     padding: var(--space-5);
   }
 }
+
+
+
+
+
+
+/* --- Inline style replacements --- */
+.footer__wa { color: var(--color-primary); }
+.btn--final-cta { background: var(--color-surface); color: var(--color-primary); margin-top: var(--space-6); }
+.btn--final-cta:hover { background: var(--color-primary); color: var(--color-text-inverse); }
+.plan__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); list-style: none; }
+.final-cta__inner { text-align: center; }
+@media (max-width: 480px) { .plan__grid { grid-template-columns: 1fr; } }
+
+.btn svg { flex-shrink: 0; }
+
+
+
+/* === Brand & Typography Enhancements === */
+
+/* Brand-link focus state for accessibility */
+.brand-link:focus-visible {
+  outline: 2px solid var(--color-brand-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Smoother section transitions */
+.section {
+  transition: background 0.4s ease;
+}
+
+/* Enhanced plan card hover */
+.plan:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--color-brand-accent-glow);
+  border-color: var(--color-primary);
+}
+
+/* Plan featured card emphasis */
+.plan--featured {
+  border-color: var(--color-primary);
+  background: linear-gradient(180deg, var(--color-primary-highlight) 0%, var(--color-surface-2) 30%);
+}
+
+/* Refined Chinese heading letter-spacing */
+.section__title {
+  letter-spacing: 0.04em;
+}
+
+/* Subtle section--alt background gradient for depth */
+.section--alt {
+  background: linear-gradient(180deg, var(--color-surface-offset) 0%, var(--color-bg) 100%);
+}
+
+/* Improved trustbar visual */
+.trustbar li {
+  position: relative;
+  padding-left: 1.2em;
+}
+.trustbar li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.85em;
+}
+
+/* Dark mode refinements */
+[data-theme='dark'] .plan--featured {
+  background: linear-gradient(180deg, var(--color-primary-highlight) 0%, var(--color-surface) 30%);
+}
+[data-theme='dark'] .section--alt {
+  background: linear-gradient(180deg, var(--color-surface-offset) 0%, var(--color-bg) 100%);
+}
+
