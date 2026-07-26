@@ -983,47 +983,50 @@ img[loading="lazy"] {
 /* ========== Zen Audio Button ========== */
 .zen-audio-btn {
   position: fixed;
-  bottom: 5.5rem;
+  bottom: 6rem;
   right: var(--space-5);
-  z-index: 90;
-  width: 44px;
-  height: 44px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 1.5px solid var(--color-border);
+  border: 2px solid var(--color-primary);
   background: var(--color-surface);
-  color: var(--color-text-muted);
+  color: var(--color-primary);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px var(--color-brand-accent-glow);
+  opacity: 0.92;
 }
 .zen-audio-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  transform: scale(1.08);
-  box-shadow: 0 6px 20px var(--color-brand-accent-glow);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  transform: scale(1.12);
+  box-shadow: 0 8px 28px rgba(31,77,63,0.25);
+  opacity: 1;
 }
 .zen-audio-btn--active {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: var(--color-primary-highlight);
-  animation: zenPulse 4s ease-in-out infinite;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  animation: zenPulse 3.5s ease-in-out infinite;
 }
 .zen-audio-btn__icon--on { display: none; }
 .zen-audio-btn--active .zen-audio-btn__icon--off { display: none; }
 .zen-audio-btn--active .zen-audio-btn__icon--on { display: block; }
 
 @keyframes zenPulse {
-  0%, 100% { box-shadow: 0 4px 16px var(--color-brand-accent-glow); }
-  50% { box-shadow: 0 4px 28px rgba(31,77,63,0.2); }
+  0%, 100% { box-shadow: 0 4px 20px rgba(31,77,63,0.2); }
+  50% { box-shadow: 0 4px 36px rgba(31,77,63,0.35); transform: scale(1.05); }
 }
 
-/* Mobile: push up above CTA bar */
 @media (max-width: 640px) {
   .zen-audio-btn {
     bottom: 5rem;
-    right: var(--space-4);
+    right: var(--space-3);
+    width: 44px;
+    height: 44px;
   }
 }
+

@@ -146,111 +146,113 @@ const WA_NUMBER = '85298593507';
 
 /* ========== Zen Ambient Music ========== */
 (function() {
-  try {
-    var btn = document.getElementById('zenAudioBtn');
-    if (!btn) return;
+  var btn = document.getElementById('zenAudioBtn');
+  if (!btn) return;
 
-    var ctx = null;
-    var masterGain = null;
-    var oscNodes = [];
-    var isPlaying = false;
-    var tremoloId = null;
+  var ctx = null;
+  var masterGain = null;
+  var oscNodes = [];
+  var isPlaying = false;
+  var tremoloId = null;
 
-    function buildEngine() {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = ctx.createGain();
-      masterGain.gain.value = 0;
-      masterGain.connect(ctx.destination);
+  function buildEngine() {
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = ctx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(ctx.destination);
 
-      // Layer 1: warm pad ~196Hz (G3)
-      var o1 = ctx.createOscillator();
-      o1.type = 'sine';
-      o1.frequency.value = 196;
-      var g1 = ctx.createGain();
-      g1.gain.value = 0.22;
-      o1.connect(g1).connect(masterGain);
-      o1.start();
-      oscNodes.push(o1);
+    // Layer 1: G3 ~196Hz
+    var o1 = ctx.createOscillator();
+    o1.type = 'sine';
+    o1.frequency.value = 196;
+    var g1 = ctx.createGain();
+    g1.gain.value = 0.22;
+    o1.connect(g1).connect(masterGain);
+    o1.start();
+    oscNodes.push(o1);
 
-      // Layer 2: fifth ~294Hz (D4)
-      var o2 = ctx.createOscillator();
-      o2.type = 'sine';
-      o2.frequency.value = 293.7;
-      var g2 = ctx.createGain();
-      g2.gain.value = 0.14;
-      o2.connect(g2).connect(masterGain);
-      o2.start();
-      oscNodes.push(o2);
+    // Layer 2: D4 ~294Hz
+    var o2 = ctx.createOscillator();
+    o2.type = 'sine';
+    o2.frequency.value = 293.7;
+    var g2 = ctx.createGain();
+    g2.gain.value = 0.14;
+    o2.connect(g2).connect(masterGain);
+    o2.start();
+    oscNodes.push(o2);
 
-      // Layer 3: octave ~392Hz (G4)
-      var o3 = ctx.createOscillator();
-      o3.type = 'sine';
-      o3.frequency.value = 392;
-      var g3 = ctx.createGain();
-      g3.gain.value = 0.08;
-      o3.connect(g3).connect(masterGain);
-      o3.start();
-      oscNodes.push(o3);
+    // Layer 3: G4 ~392Hz
+    var o3 = ctx.createOscillator();
+    o3.type = 'sine';
+    o3.frequency.value = 392;
+    var g3 = ctx.createGain();
+    g3.gain.value = 0.08;
+    o3.connect(g3).connect(masterGain);
+    o3.start();
+    oscNodes.push(o3);
 
-      // Layer 4: airy ~784Hz (G5)
-      var o4 = ctx.createOscillator();
-      o4.type = 'sine';
-      o4.frequency.value = 784;
-      var g4 = ctx.createGain();
-      g4.gain.value = 0.03;
-      o4.connect(g4).connect(masterGain);
-      o4.start();
-      oscNodes.push(o4);
+    // Layer 4: G5 ~784Hz
+    var o4 = ctx.createOscillator();
+    o4.type = 'sine';
+    o4.frequency.value = 784;
+    var g4 = ctx.createGain();
+    g4.gain.value = 0.04;
+    o4.connect(g4).connect(masterGain);
+    o4.start();
+    oscNodes.push(o4);
 
-      startTremolo();
+    startTremolo();
+  }
+
+  function startTremolo() {
+    if (!ctx || ctx.state === 'closed') return;
+    clearTimeout(tremoloId);
+    var now = ctx.currentTime;
+    masterGain.gain.cancelScheduledValues(now);
+    masterGain.gain.setValueAtTime(masterGain.gain.value || 0.28, now);
+    masterGain.gain.linearRampToValueAtTime(0.42, now + 3);
+    masterGain.gain.linearRampToValueAtTime(0.28, now + 7);
+    tremoloId = setTimeout(startTremolo, 7000);
+  }
+
+  function fadeIn() {
+    if (!ctx || ctx.state === 'closed') buildEngine();
+    if (ctx.state === 'suspended') ctx.resume();
+    clearTimeout(tremoloId);
+    var now = ctx.currentTime;
+    masterGain.gain.cancelScheduledValues(now);
+    masterGain.gain.setValueAtTime(0, now);
+    masterGain.gain.linearRampToValueAtTime(0.35, now + 2.5);
+    setTimeout(startTremolo, 2600);
+  }
+
+  function fadeOut(cb) {
+    clearTimeout(tremoloId);
+    if (!ctx || !masterGain) { if (cb) cb(); return; }
+    var now = ctx.currentTime;
+    masterGain.gain.cancelScheduledValues(now);
+    masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+    masterGain.gain.linearRampToValueAtTime(0, now + 2);
+    setTimeout(function() {
+      if (ctx && ctx.state !== 'closed') ctx.suspend();
+      if (cb) cb();
+    }, 2100);
+  }
+
+  btn.addEventListener('click', function() {
+    if (isPlaying) {
+      fadeOut(function() {
+        btn.classList.remove('zen-audio-btn--active');
+        btn.setAttribute('aria-label', '播放禪修音樂');
+        btn.title = '禪修音樂';
+        isPlaying = false;
+      });
+    } else {
+      btn.classList.add('zen-audio-btn--active');
+      btn.setAttribute('aria-label', '暫停禪修音樂');
+      btn.title = '禪修音樂（播放中）';
+      fadeIn();
+      isPlaying = true;
     }
-
-    function startTremolo() {
-      if (!ctx || ctx.state === 'closed') return;
-      var now = ctx.currentTime;
-      masterGain.gain.cancelScheduledValues(now);
-      masterGain.gain.linearRampToValueAtTime(0.42, now + 3);
-      masterGain.gain.linearRampToValueAtTime(0.28, now + 7);
-      tremoloId = setTimeout(startTremolo, 7000);
-    }
-
-    function fadeIn() {
-      if (!ctx || ctx.state === 'closed') buildEngine();
-      if (ctx.state === 'suspended') ctx.resume();
-      clearTimeout(tremoloId);
-      var now = ctx.currentTime;
-      masterGain.gain.cancelScheduledValues(now);
-      masterGain.gain.setValueAtTime(0, now);
-      masterGain.gain.linearRampToValueAtTime(0.35, now + 2.5);
-      startTremolo();
-    }
-
-    function fadeOut(cb) {
-      clearTimeout(tremoloId);
-      if (!ctx || !masterGain) { if (cb) cb(); return; }
-      var now = ctx.currentTime;
-      masterGain.gain.cancelScheduledValues(now);
-      masterGain.gain.setValueAtTime(masterGain.gain.value, now);
-      masterGain.gain.linearRampToValueAtTime(0, now + 2);
-      setTimeout(function() {
-        if (ctx && ctx.state !== 'closed') ctx.suspend();
-        if (cb) cb();
-      }, 2100);
-    }
-
-    btn.addEventListener('click', function() {
-      if (isPlaying) {
-        fadeOut(function() {
-          btn.classList.remove('zen-audio-btn--active');
-          btn.setAttribute('aria-label', '播放禪修音樂');
-          isPlaying = false;
-        });
-      } else {
-        btn.classList.add('zen-audio-btn--active');
-        btn.setAttribute('aria-label', '暫停禪修音樂');
-        fadeIn();
-        isPlaying = true;
-      }
-    });
-  } catch (e) {}
+  });
 })();
