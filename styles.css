@@ -1,5 +1,5 @@
-/* ============================================================
-   安念善終 — 一條龍善終服務 Landing Page Styles
+﻿/* ============================================================
+   安念善終服務辦公室 — 一條龍善終服務 Landing Page Styles
    Brand: Deep Green #1F4D3F / Cream #F6F4EF / WA Green #1F7A4D
    Fonts: Noto Serif TC (display) + Noto Sans TC (body)
    Design: Calm, Dignified, Transparent, Trust-building
@@ -434,4 +434,136 @@ img[loading="lazy"] {
 .step:hover .step__num {
   transform: scale(1.15);
   box-shadow: 0 4px 12px rgba(31,77,63,.25);
+}
+/* ========== Brand Link Override ========== */
+.brand__name a {
+  color: inherit;
+  text-decoration: none;
+}
+.brand__name a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Strategy / 暖科技 ========== */
+.strategy-grid {
+  margin-top: var(--space-10);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 760px) {
+  .strategy-grid { grid-template-columns: 1fr; }
+}
+.strategy-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+.strategy-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(31, 77, 63, .12);
+  border-color: var(--color-primary);
+}
+.strategy-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-4);
+  display: block;
+}
+.strategy-card h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+}
+.strategy-card p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Tech Highlights */
+.tech-highlights {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.tech-highlights h3 {
+  text-align: center;
+  font-size: var(--text-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+}
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 760px) {
+  .tech-grid { grid-template-columns: 1fr; }
+}
+.tech-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+  border: 1px solid var(--color-border);
+  transition: all var(--transition);
+}
+.tech-item:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(31, 77, 63, .08);
+}
+.tech-item__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.tech-item a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.tech-item a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Strategy Tagline */
+.strategy-tagline {
+  text-align: center;
+  margin-top: var(--space-8);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-surface);
+  border-radius: 999px;
+  display: inline-block;
+  border: 2px solid var(--color-primary);
+  width: 100%;
+  box-sizing: border-box;
+}
+.strategy-tagline strong {
+  color: var(--color-primary);
+}
+
+/* Footer brand link */
+.footer__brand a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer__brand a:hover {
+  text-decoration: underline;
+}
+.footer__bottom a {
+  color: inherit;
+  text-decoration: none;
+}
+.footer__bottom a:hover {
+  text-decoration: underline;
 }

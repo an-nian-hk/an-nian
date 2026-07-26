@@ -1,4 +1,4 @@
-// 安念善終 — 一條龍善終服務 Landing Page Interactivity
+﻿// 安念善終服務辦公室 — 一條龍善終服務 Landing Page Interactivity
 const WA_NUMBER = '85298593507';
 
 (function() {
