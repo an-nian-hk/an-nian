@@ -1124,5 +1124,6 @@ img[loading="lazy"] {
 
 
 
-.plan__sub { font-weight: 400; font-size: 0.85em; color: var(--color-text-muted); }
+.plan__sub { display: block; font-weight: 400; font-size: 0.7em; color: var(--color-text-muted); margin-top: 2px; }
+
 
