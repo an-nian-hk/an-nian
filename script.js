@@ -143,57 +143,61 @@ const WA_NUMBER = '85298593507';
   } catch (e) {}
 })();
 
+
 /* ========== Background Music ========== */
 (function() {
   var btn = document.getElementById('musicBtn');
-  if (!btn) return;
+  var iframe = document.getElementById('bgmIframe');
+  if (!btn || !iframe) return;
 
-  var player = null;
   var playing = false;
+  var ready = false;
+  var queue = [];
 
-  window.onYouTubeIframeAPIReady = function() {
-    player = new YT.Player('bgmPlayer', {
-      videoId: 'CHz__3r-YF8',
-      width: 1,
-      height: 1,
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        disablekb: 1,
-        enablejsapi: 1,
-        iv_load_policy: 3,
-        loop: 1,
-        modestbranding: 1,
-        playsinline: 1,
-        rel: 0
-      },
-      events: {
-        onReady: function() {
-          player.setVolume(25);
-        },
-        onStateChange: function(e) {
-          if (e.data === 0 && playing) { player.playVideo(); }
-        }
+  // Listen for YouTube ready event
+  window.addEventListener('message', function(e) {
+    if (e.origin !== 'https://www.youtube.com') return;
+    try {
+      var data = JSON.parse(e.data);
+      if (data.event === 'onReady' || data.event === 'infoDelivery') {
+        ready = true;
+        // Flush queued commands
+        while (queue.length) { send(queue.shift()); }
+        // Set initial volume
+        send({ event: 'command', func: 'setVolume', args: [25] });
       }
-    });
-  };
+    } catch (ex) {}
+  });
+
+  function send(cmd) {
+    if (!ready) { queue.push(cmd); return; }
+    iframe.contentWindow.postMessage(JSON.stringify(cmd), 'https://www.youtube.com');
+  }
 
   btn.addEventListener('click', function() {
-    if (!player || typeof player.playVideo !== 'function') return;
-
     if (playing) {
-      player.pauseVideo();
+      send({ event: 'command', func: 'pauseVideo', args: [] });
       btn.classList.remove('music-btn--on');
       btn.setAttribute('aria-label', '播放背景音樂');
       btn.title = '播放背景音樂';
       playing = false;
     } else {
-      player.playVideo();
-      player.unMute();
+      send({ event: 'command', func: 'unMute', args: [] });
+      send({ event: 'command', func: 'playVideo', args: [] });
       btn.classList.add('music-btn--on');
       btn.setAttribute('aria-label', '暫停背景音樂');
       btn.title = '暫停背景音樂';
       playing = true;
     }
   });
+
+  // Also start playing on first user interaction anywhere
+  var started = false;
+  document.addEventListener('click', function init() {
+    if (started) return;
+    started = true;
+    send({ event: 'command', func: 'playVideo', args: [] });
+    send({ event: 'command', func: 'mute', args: [] });
+    document.removeEventListener('click', init);
+  }, { once: true });
 })();
