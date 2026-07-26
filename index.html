@@ -31,6 +31,7 @@
         <span class="brand__name"><a href="https://an-nian-hk.github.io/an-nian/#top"><strong>安念善終</strong></a>服務辦公室</span>
       </a>
       <nav class="nav" aria-label="主導航">
+        <a href="#brand-strategy">品牌策略</a>
         <a href="#services">服務範圍</a>
         <a href="#plans">服務計劃</a>
         <a href="#flowers">帛事花牌</a>
@@ -95,46 +96,182 @@
     </section>
 
 
-    <!-- ===== 暖科技品牌策略 ===== -->
-    <section class="section" id="brand-strategy">
-      <div class="container container--narrow">
-        <h2 class="section__title">一站式「暖科技」品牌策略</h2>
-        <p class="section__lead">我們將品牌延伸至生前到終後的全程陪伴，結合科技與人性化服務，讓每個家庭都能安心託付。</p>
-        <div class="strategy-grid">
-          <article class="strategy-card">
-            <div class="strategy-card__icon">📜</div>
-            <h3>生前契約</h3>
-            <p>提前規劃，為自己及家人預先安排身後事，減輕家人日後的負擔與徬徨。</p>
+        <!-- ===== 暖科技品牌策略 ===== -->
+    <section class="warmtech" id="brand-strategy">
+      <!-- 背景動態粒子 -->
+      <div class="warmtech__particles" aria-hidden="true">
+        <span class="wt-particle wt-particle--1"></span>
+        <span class="wt-particle wt-particle--2"></span>
+        <span class="wt-particle wt-particle--3"></span>
+        <span class="wt-particle wt-particle--4"></span>
+        <span class="wt-particle wt-particle--5"></span>
+        <span class="wt-particle wt-particle--6"></span>
+      </div>
+      <div class="container">
+        <!-- ===== Header ===== -->
+        <div class="warmtech__header">
+          <span class="warmtech__badge" data-reveal>✦ 品牌策略</span>
+          <h2 class="warmtech__title" data-reveal>
+            一站式<span class="warmtech__highlight">「暖科技」</span>品牌策略
+            <span class="warmtech__title-line" aria-hidden="true"></span>
+          </h2>
+          <p class="warmtech__sub" data-reveal>品牌上延至「生前契約」與「家居紓緩治療」，下延至「一站式殯儀」——以科技為橋，讓每一次託付都溫暖透明。</p>
+        </div>
+
+        <!-- ===== 三大支柱：圖文交錯旅程 ===== -->
+        <div class="warmtech__journey">
+          <!-- 支柱 1: 生前契約 (圖左文右) -->
+          <article class="wt-pillar wt-pillar--left" data-reveal>
+            <div class="wt-pillar__visual">
+              <div class="wt-pillar__img-wrap">
+                <svg class="wt-pillar__illustration" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="gContract" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.12"/>
+                      <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0.04"/>
+                    </linearGradient>
+                  </defs>
+                  <rect x="40" y="20" width="120" height="120" rx="8" fill="url(#gContract)" stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.25"/>
+                  <rect x="58" y="40" width="84" height="8" rx="4" fill="var(--color-primary)" opacity="0.6"/>
+                  <rect x="58" y="56" width="64" height="5" rx="2.5" fill="var(--color-primary)" opacity="0.35"/>
+                  <rect x="58" y="67" width="72" height="5" rx="2.5" fill="var(--color-primary)" opacity="0.25"/>
+                  <rect x="58" y="78" width="52" height="5" rx="2.5" fill="var(--color-primary)" opacity="0.2"/>
+                  <circle cx="170" cy="130" r="18" fill="var(--color-primary)" opacity="0.12"/>
+                  <path d="M164 130l4 4 8-8" stroke="var(--color-primary)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                <div class="wt-pillar__glow"></div>
+              </div>
+            </div>
+            <div class="wt-pillar__body">
+              <span class="wt-pillar__tag">上延 · 預先規劃</span>
+              <h3 class="wt-pillar__title">📜 生前契約</h3>
+              <p class="wt-pillar__desc">提前為自己與家人規劃身後事，鎖定今日價格，減輕日後家人的情感與財務負擔。一份契約，一份從容的承諾。</p>
+              <ul class="wt-pillar__points">
+                <li>鎖定現價，抗通脹保障</li>
+                <li>個人化告別儀式預設</li>
+                <li>分期付款，靈活安排</li>
+              </ul>
+            </div>
           </article>
-          <article class="strategy-card">
-            <div class="strategy-card__icon">🏠</div>
-            <h3>家居紓緩治療（寧養）</h3>
-            <p>為末期病患提供居家寧養支援，讓親人在熟悉的環境中有尊嚴地走完最後一程。</p>
+
+          <!-- 支柱 2: 家居紓緩治療 (圖右文左) -->
+          <article class="wt-pillar wt-pillar--right" data-reveal>
+            <div class="wt-pillar__body">
+              <span class="wt-pillar__tag">中延 · 溫暖陪伴</span>
+              <h3 class="wt-pillar__title">🏠 家居紓緩治療（寧養）</h3>
+              <p class="wt-pillar__desc">讓末期病患在熟悉的家中，有尊嚴地走完人生最後一程。專業醫護團隊上門支援，減輕家屬照護壓力。</p>
+              <ul class="wt-pillar__points">
+                <li>註冊護士定期家訪</li>
+                <li>痛症管理與症狀控制</li>
+                <li>心理輔導與家屬支援</li>
+              </ul>
+            </div>
+            <div class="wt-pillar__visual">
+              <div class="wt-pillar__img-wrap">
+                <svg class="wt-pillar__illustration" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="gHome" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.12"/>
+                      <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0.04"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M100 20L30 75v55h140V75L100 20z" fill="url(#gHome)" stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.25"/>
+                  <rect x="82" y="95" width="36" height="35" rx="3" fill="var(--color-primary)" opacity="0.15"/>
+                  <circle cx="108" cy="113" r="4" fill="var(--color-primary)" opacity="0.5"/>
+                  <path d="M80 130h40" stroke="var(--color-primary)" stroke-width="1.5" stroke-opacity="0.3"/>
+                  <circle cx="155" cy="35" r="22" fill="var(--color-primary)" opacity="0.08"/>
+                  <path d="M147 35c0-6 4-10 8-10s8 4 8 10-4 10-8 10-8-4-8-10z" fill="var(--color-primary)" opacity="0.2"/>
+                </svg>
+                <div class="wt-pillar__glow"></div>
+              </div>
+            </div>
           </article>
-          <article class="strategy-card">
-            <div class="strategy-card__icon">⚰️</div>
-            <h3>一站式殯儀</h3>
-            <p>從離世到骨灰安放，全程協助安排殯儀館、宗教儀式、靈車、花牌、紙紮及骨灰後續。</p>
+
+          <!-- 支柱 3: 一站式殯儀 (圖左文右) -->
+          <article class="wt-pillar wt-pillar--left" data-reveal>
+            <div class="wt-pillar__visual">
+              <div class="wt-pillar__img-wrap">
+                <picture>
+                  <source media="(max-width: 768px)" srcset="assets/images/mobile/mobile_funeral_hall.png" />
+                  <img class="wt-pillar__photo" src="assets/images/website/web_funeral_hall.png" alt="合作殯儀館靈廳實景" loading="lazy" width="400" height="267" />
+                </picture>
+                <div class="wt-pillar__glow"></div>
+              </div>
+            </div>
+            <div class="wt-pillar__body">
+              <span class="wt-pillar__tag">下延 · 全程安排</span>
+              <h3 class="wt-pillar__title">⚰️ 一站式殯儀</h3>
+              <p class="wt-pillar__desc">從離世到骨灰安放，全程協助安排殯儀館、宗教儀式、靈車、花牌、紙紮及骨灰後續，讓家屬無後顧之憂。</p>
+              <ul class="wt-pillar__points">
+                <li>持牌殮葬商對接</li>
+                <li>多宗教儀式統籌</li>
+                <li>骨灰龕位查詢與安排</li>
+              </ul>
+            </div>
           </article>
         </div>
-        <div class="tech-highlights">
-          <h3>科技賦能 · 安心透明</h3>
-          <div class="tech-grid">
-            <div class="tech-item">
-              <span class="tech-item__icon">📱</span>
-              <span>專屬人員更新文件進度，隨時掌握辦理狀態</span>
+
+        <!-- ===== 連接線 (桌面版) ===== -->
+        <div class="warmtech__connector" aria-hidden="true">
+          <svg viewBox="0 0 4 100" preserveAspectRatio="none">
+            <line x1="2" y1="0" x2="2" y2="100" stroke="var(--color-primary)" stroke-width="1" stroke-opacity="0.15" stroke-dasharray="4 6"/>
+          </svg>
+        </div>
+
+        <!-- ===== 科技賦能 ===== -->
+        <div class="warmtech__tech" data-reveal>
+          <div class="warmtech__tech-header">
+            <span class="warmtech__tech-icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="var(--color-primary)" opacity="0.4"/><circle cx="12" cy="12" r="7" stroke="var(--color-primary)" stroke-width="1" stroke-opacity="0.3"/><circle cx="12" cy="12" r="10" stroke="var(--color-primary)" stroke-width="0.5" stroke-opacity="0.15"/></svg>
+            </span>
+            <h3>科技賦能 · 安心透明</h3>
+          </div>
+          <div class="wt-tech-cards">
+            <!-- Card 1 -->
+            <div class="wt-tech-card" data-reveal>
+              <div class="wt-tech-card__icon-ring">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><polyline points="6 10 9 13 13 9"/>
+                </svg>
+              </div>
+              <h4>進度實時追蹤</h4>
+              <p>專屬人員透過 WhatsApp 更新文件進度，隨時掌握辦理狀態，告別等待焦慮。</p>
             </div>
-            <div class="tech-item">
-              <span class="tech-item__icon">🥽</span>
-              <span>AR/VR 線上靈堂預覽，遠程參與告別儀式</span>
+            <!-- Card 2 -->
+            <div class="wt-tech-card" data-reveal>
+              <div class="wt-tech-card__icon-ring">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="4"/><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+                </svg>
+              </div>
+              <h4>AR/VR 線上靈堂預覽</h4>
+              <p>即使身處遠方，也能透過虛擬實境沉浸式參與告別儀式，零距離送別摯愛。</p>
             </div>
-            <div class="tech-item">
-              <span class="tech-item__icon">🕯️</span>
-              <span><a href="https://app7.legco.gov.hk/rpdb/tc/uploads/2024/ISSH/ISSH36_2024_20241227_tc.pdf" target="_blank" rel="noopener">無盡思念網上追思</a>代辦，永續紀念摯愛</span>
+            <!-- Card 3 -->
+            <div class="wt-tech-card" data-reveal>
+              <div class="wt-tech-card__icon-ring">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+                </svg>
+              </div>
+              <h4>無盡思念網上追思</h4>
+              <p><a href="https://app7.legco.gov.hk/rpdb/tc/uploads/2024/ISSH/ISSH36_2024_20241227_tc.pdf" target="_blank" rel="noopener">代辦網上追思頁面</a>，讓思念跨越時空，永續紀念摯愛生平。</p>
             </div>
           </div>
         </div>
-        <p class="strategy-tagline">主打<strong>高透明度、零時間焦慮、五星級同理心</strong></p>
+
+        <!-- ===== Tagline ===== -->
+        <div class="warmtech__tagline-wrap" data-reveal>
+          <p class="warmtech__tagline">
+            <span class="warmtech__tagline-icon">✦</span>
+            主打<span class="warmtech__tagline-strong">高透明度</span>
+            <span class="warmtech__tagline-dot">·</span>
+            <span class="warmtech__tagline-strong">零時間焦慮</span>
+            <span class="warmtech__tagline-dot">·</span>
+            <span class="warmtech__tagline-strong">五星級同理心</span>
+            <span class="warmtech__tagline-icon">✦</span>
+          </p>
+        </div>
       </div>
     </section>
     <!-- ===== Steps ===== -->
@@ -238,7 +375,6 @@
             <div class="plan__price">HK$19,800<span class="plan__unit"> 起</span></div>
             <p class="plan__for">院出簡約喪禮（不設靈堂，直接由醫院/殮房出殯）</p>
             <ul class="plan__list">
-              <li>殯儀館入殮及停放</li>
               <li>靈車接送（指定範圍內）</li>
               <li>基本花牌一個</li>
               <li>死亡證及相關文件協助</li>

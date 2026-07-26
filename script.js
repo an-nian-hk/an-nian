@@ -116,3 +116,22 @@ const WA_NUMBER = '85298593507';
     });
   });
 })();
+/* ========== Scroll Reveal (暖科技 & 全站) ========== */
+(function() {
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  if (!revealEls.length) return;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('wt-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -40px 0px'
+  });
+  
+  revealEls.forEach(el => observer.observe(el));
+})();
