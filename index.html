@@ -15,6 +15,7 @@
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="logo.png" />
+  <script src="https://www.youtube.com/iframe_api"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -601,6 +602,9 @@
   </div>
 
   
+  
+  <!-- ===== YouTube Player (hidden) ===== -->
+  <div id="ytPlayer" style="position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" aria-hidden="true"></div>
   <!-- ===== Zen Music Toggle ===== -->
   <button class="zen-audio-btn" id="zenAudioBtn" aria-label="播放禪修音樂" title="禪修音樂">
     <svg class="zen-audio-btn__icon zen-audio-btn__icon--off" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -619,6 +623,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
