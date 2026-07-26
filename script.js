@@ -146,32 +146,18 @@ const WA_NUMBER = '85298593507';
 
 /* ========== Welcome + BGM ========== */
 (function() {
-  var overlay = document.getElementById('welcomeOverlay');
-  var btn     = document.getElementById('welcomeBtn');
-  var bgm     = document.getElementById('bgm');
-  var toggle  = document.getElementById('bgmToggle');
-  if (!overlay || !btn) return;
+  var bgm    = document.getElementById('bgm');
+  var toggle = document.getElementById('bgmToggle');
+  if (!bgm || !toggle) return;
 
-  var iconPlay  = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-  var iconPause = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+  var playIcon  = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  var pauseIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 
-  // BGM toggle
-  if (bgm && toggle) {
-    toggle.onclick = function() {
-      if (bgm.paused) { bgm.volume = 0.3; bgm.play(); }
-      else            { bgm.pause(); }
-    };
-    bgm.onplay  = function() { toggle.innerHTML = iconPause; toggle.classList.add('bgm-bar__btn--pause'); };
-    bgm.onpause = function() { toggle.innerHTML = iconPlay;  toggle.classList.remove('bgm-bar__btn--pause'); };
-    toggle.innerHTML = iconPlay;
-  }
-
-  // Click "進入網站" → fade overlay + start music
-  btn.addEventListener('click', function() {
-    overlay.classList.add('welcome-overlay--hidden');
-    if (bgm) {
-      bgm.volume = 0.3;
-      bgm.play().catch(function(){});
-    }
-  });
+  toggle.onclick = function() {
+    if (bgm.paused) { bgm.volume = 0.3; bgm.play(); }
+    else            { bgm.pause(); }
+  };
+  bgm.onplay  = function() { toggle.innerHTML = pauseIcon; toggle.classList.add('bgm-bar__btn--pause'); };
+  bgm.onpause = function() { toggle.innerHTML = playIcon;  toggle.classList.remove('bgm-bar__btn--pause'); };
+  toggle.innerHTML = playIcon;
 })();

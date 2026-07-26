@@ -31,7 +31,7 @@
       <p class="welcome-overlay__brand">安念善終服務辦公室</p>
       <p class="welcome-overlay__tagline">善終品牌</p>
       <p class="welcome-overlay__text">安放思念 · 從容送別</p>
-      <button class="welcome-overlay__btn" id="welcomeBtn">進入網站</button>
+      <button class="welcome-overlay__btn" id="welcomeBtn" onclick="var o=document.getElementById(&quot;welcomeOverlay&quot;);o.classList.add(&quot;welcome-overlay--hidden&quot;);var a=document.getElementById(&quot;bgm&quot;);if(a){a.volume=0.3;a.play()}" type="button">進入網站</button>
     </div>
   </div>
   <a class="skip-link" href="#main">跳至主要內容</a>
@@ -623,6 +623,8 @@
   </div>
   <script src="script.js"></script></body>
 </html>
+
+
 
 
 
