@@ -576,7 +576,10 @@ img[loading="lazy"] {
   z-index: 1;
 }
 .warmtech__badge {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+  margin-bottom: var(--space-5);
   font-size: var(--text-xs);
   letter-spacing: .16em;
   color: var(--color-primary);
@@ -584,8 +587,6 @@ img[loading="lazy"] {
   padding: var(--space-2) var(--space-5);
   border-radius: var(--radius-full);
   border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-  margin-bottom: var(--space-5);
-  text-transform: uppercase;
   font-weight: 500;
 }
 .warmtech__title { font-size: var(--text-2xl); font-weight: 700; color: var(--color-text); margin-bottom: var(--space-4); }
@@ -989,5 +990,6 @@ img[loading="lazy"] {
 [data-theme='dark'] .section--alt {
   background: linear-gradient(180deg, var(--color-surface-offset) 0%, var(--color-bg) 100%);
 }
+
 
 
