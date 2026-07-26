@@ -143,22 +143,19 @@ const WA_NUMBER = '85298593507';
   } catch (e) {}
 })();
 
-
-/* ========== Zen Music (YouTube) ========== */
+/* ========== Background Music ========== */
 (function() {
-  var btn = document.getElementById('zenAudioBtn');
+  var btn = document.getElementById('musicBtn');
   if (!btn) return;
 
   var player = null;
-  var isPlaying = false;
-  var isReady = false;
-  var volume = 30; // start at 30%
-  var fadeInterval = null;
+  var playing = false;
 
-  // YouTube API callback
   window.onYouTubeIframeAPIReady = function() {
-    player = new YT.Player('ytPlayer', {
+    player = new YT.Player('bgmPlayer', {
       videoId: 'CHz__3r-YF8',
+      width: 1,
+      height: 1,
       playerVars: {
         autoplay: 0,
         controls: 0,
@@ -168,67 +165,35 @@ const WA_NUMBER = '85298593507';
         loop: 1,
         modestbranding: 1,
         playsinline: 1,
-        rel: 0,
-        showinfo: 0
+        rel: 0
       },
       events: {
         onReady: function() {
-          isReady = true;
-          player.setVolume(0);
-          player.setLoop(true);
+          player.setVolume(25);
         },
         onStateChange: function(e) {
-          // YT.PlayerState.ENDED = 0 → replay
-          if (e.data === 0 && isPlaying) {
-            player.seekTo(0);
-            player.playVideo();
-          }
+          if (e.data === 0 && playing) { player.playVideo(); }
         }
       }
     });
   };
 
-  function fadeVolume(target, duration, cb) {
-    clearInterval(fadeInterval);
-    if (!isReady || !player) { if (cb) cb(); return; }
-    var current = player.getVolume();
-    if (current === false) current = 0;
-    var steps = 20;
-    var stepTime = duration / steps;
-    var stepDelta = (target - current) / steps;
-    var step = 0;
-    fadeInterval = setInterval(function() {
-      step++;
-      var v = Math.round(current + stepDelta * step);
-      v = Math.max(0, Math.min(100, v));
-      try { player.setVolume(v); } catch(e) {}
-      if (step >= steps) {
-        clearInterval(fadeInterval);
-        try { player.setVolume(target); } catch(e) {}
-        if (cb) cb();
-      }
-    }, stepTime);
-  }
-
   btn.addEventListener('click', function() {
-    if (isPlaying) {
-      fadeVolume(0, 1500, function() {
-        try { player.pauseVideo(); } catch(e) {}
-        btn.classList.remove('zen-audio-btn--active');
-        btn.setAttribute('aria-label', '播放禪修音樂');
-        btn.title = '禪修音樂';
-        isPlaying = false;
-      });
+    if (!player || typeof player.playVideo !== 'function') return;
+
+    if (playing) {
+      player.pauseVideo();
+      btn.classList.remove('music-btn--on');
+      btn.setAttribute('aria-label', '播放背景音樂');
+      btn.title = '播放背景音樂';
+      playing = false;
     } else {
-      btn.classList.add('zen-audio-btn--active');
-      btn.setAttribute('aria-label', '暫停禪修音樂');
-      btn.title = '禪修音樂（播放中）';
-      try {
-        player.unMute();
-        player.playVideo();
-      } catch(e) {}
-      isPlaying = true;
-      fadeVolume(volume, 2000);
+      player.playVideo();
+      player.unMute();
+      btn.classList.add('music-btn--on');
+      btn.setAttribute('aria-label', '暫停背景音樂');
+      btn.title = '暫停背景音樂';
+      playing = true;
     }
   });
 })();
