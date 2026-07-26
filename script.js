@@ -145,46 +145,19 @@ const WA_NUMBER = '85298593507';
 
 
 /* ========== Background Music ========== */
-(function() {
-  var btn = document.getElementById('musicBtn');
-  var bgm = document.getElementById('bgm');
-  if (!btn || !bgm) return;
+var bgm = document.getElementById('bgm');
+var btn = document.getElementById('musicBtn');
 
-  var playing = false;
-
-  // Pre-warm audio
-  bgm.load();
+if (bgm && btn) {
   bgm.volume = 0.3;
+  bgm.load();
 
-  btn.addEventListener('click', function() {
-    if (playing) {
-      bgm.pause();
-      btn.classList.remove('music-btn--on');
-      btn.setAttribute('aria-label', '播放背景音樂');
-      btn.title = '播放背景音樂';
-      playing = false;
-    } else {
-      bgm.currentTime = 0;
-      bgm.volume = 0.3;
-      var promise = bgm.play();
-      if (promise !== undefined) {
-        promise.then(function() {
-          btn.classList.add('music-btn--on');
-          btn.setAttribute('aria-label', '暫停背景音樂');
-          btn.title = '暫停背景音樂';
-          playing = true;
-        }).catch(function(e) {
-          // Retry once after a short delay (mobile autoplay policy)
-          setTimeout(function() {
-            bgm.play().then(function() {
-              btn.classList.add('music-btn--on');
-              btn.setAttribute('aria-label', '暫停背景音樂');
-              btn.title = '暫停背景音樂';
-              playing = true;
-            }).catch(function() {});
-          }, 300);
-        });
-      }
-    }
-  });
-})();
+  btn.onclick = function() {
+    if (bgm.paused) { bgm.play(); }
+    else            { bgm.pause(); }
+  };
+
+  bgm.onplay  = function() { btn.classList.add('music-btn--on'); };
+  bgm.onpause = function() { btn.classList.remove('music-btn--on'); };
+  bgm.onended = function() { btn.classList.remove('music-btn--on'); };
+}
