@@ -21,6 +21,19 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  
+  <!-- Welcome Overlay -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-overlay__card">
+      <a href="https://an-nian-hk.github.io/an-nian/#top" class="welcome-overlay__logo-link" aria-label="安念善終服務辦公室">
+        <img class="welcome-overlay__logo" src="logo.png" alt="安念善終服務辦公室" width="400" height="400" />
+      </a>
+      <p class="welcome-overlay__brand">安念善終服務辦公室</p>
+      <p class="welcome-overlay__tagline">善終品牌</p>
+      <p class="welcome-overlay__text">安放思念 · 從容送別</p>
+      <button class="welcome-overlay__btn" id="welcomeBtn">進入網站</button>
+    </div>
+  </div>
   <a class="skip-link" href="#main">跳至主要內容</a>
 
   <!-- ===== Header ===== -->
@@ -598,16 +611,21 @@
       WhatsApp 立即聯絡
     </a>
   </div>
-
-  <!-- Background Music -->
-  <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
-  <button class="music-btn" id="musicBtn" aria-label="播放背景音樂" title="播放背景音樂">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
-    </svg>
-  </button>
+  <!-- Background Music Player -->
+  <div class="bgm-bar" id="bgmBar">
+    <button class="bgm-bar__btn" id="bgmToggle" aria-label="播放音樂">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+    <div class="bgm-bar__info">
+      <span class="bgm-bar__label">禪修背景音樂</span>
+    </div>
+    <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
+  </div>
   <script src="script.js"></script></body>
 </html>
+
+
+
 
 
 
