@@ -151,89 +151,91 @@ const WA_NUMBER = '85298593507';
     if (!btn) return;
 
     var ctx = null;
-    var gainNode = null;
-    var oscs = [];
+    var masterGain = null;
+    var oscNodes = [];
     var isPlaying = false;
+    var tremoloId = null;
 
-    function createAmbient() {
+    function buildEngine() {
       ctx = new (window.AudioContext || window.webkitAudioContext)();
-      gainNode = ctx.createGain();
-      gainNode.gain.value = 0;
-      gainNode.connect(ctx.destination);
+      masterGain = ctx.createGain();
+      masterGain.gain.value = 0;
+      masterGain.connect(ctx.destination);
 
-      // Layer 1: deep drone ~55Hz (A1) - grounding
-      var osc1 = ctx.createOscillator();
-      osc1.type = 'sine';
-      osc1.frequency.value = 55;
+      // Layer 1: warm pad ~196Hz (G3)
+      var o1 = ctx.createOscillator();
+      o1.type = 'sine';
+      o1.frequency.value = 196;
       var g1 = ctx.createGain();
-      g1.gain.value = 0.15;
-      osc1.connect(g1);
-      g1.connect(gainNode);
-      osc1.start();
-      oscs.push({ osc: osc1, gain: g1 });
+      g1.gain.value = 0.22;
+      o1.connect(g1).connect(masterGain);
+      o1.start();
+      oscNodes.push(o1);
 
-      // Layer 2: harmonic ~110Hz (A2) - warmth
-      var osc2 = ctx.createOscillator();
-      osc2.type = 'sine';
-      osc2.frequency.value = 110;
+      // Layer 2: fifth ~294Hz (D4)
+      var o2 = ctx.createOscillator();
+      o2.type = 'sine';
+      o2.frequency.value = 293.7;
       var g2 = ctx.createGain();
-      g2.gain.value = 0.08;
-      osc2.connect(g2);
-      g2.connect(gainNode);
-      osc2.start();
-      oscs.push({ osc: osc2, gain: g2 });
+      g2.gain.value = 0.14;
+      o2.connect(g2).connect(masterGain);
+      o2.start();
+      oscNodes.push(o2);
 
-      // Layer 3: gentle overtone ~330Hz (E4) - airiness
-      var osc3 = ctx.createOscillator();
-      osc3.type = 'sine';
-      osc3.frequency.value = 329.6;
+      // Layer 3: octave ~392Hz (G4)
+      var o3 = ctx.createOscillator();
+      o3.type = 'sine';
+      o3.frequency.value = 392;
       var g3 = ctx.createGain();
-      g3.gain.value = 0.04;
-      osc3.connect(g3);
-      g3.connect(gainNode);
-      osc3.start();
-      oscs.push({ osc: osc3, gain: g3 });
+      g3.gain.value = 0.08;
+      o3.connect(g3).connect(masterGain);
+      o3.start();
+      oscNodes.push(o3);
 
-      // Layer 4: very high sparkle ~880Hz
-      var osc4 = ctx.createOscillator();
-      osc4.type = 'sine';
-      osc4.frequency.value = 880;
+      // Layer 4: airy ~784Hz (G5)
+      var o4 = ctx.createOscillator();
+      o4.type = 'sine';
+      o4.frequency.value = 784;
       var g4 = ctx.createGain();
-      g4.gain.value = 0.015;
-      osc4.connect(g4);
-      g4.connect(gainNode);
-      osc4.start();
-      oscs.push({ osc: osc4, gain: g4 });
+      g4.gain.value = 0.03;
+      o4.connect(g4).connect(masterGain);
+      o4.start();
+      oscNodes.push(o4);
 
-      // Slow tremolo on the drone
-      var lfo = ctx.createOscillator();
-      lfo.type = 'sine';
-      lfo.frequency.value = 0.07; // very slow ~14 second cycle
-      var lfoGain = ctx.createGain();
-      lfoGain.gain.value = 0.3;
-      lfo.connect(lfoGain);
-      lfoGain.connect(gainNode.gain);
-      lfo.start();
-      oscs.push({ osc: lfo, gain: lfoGain });
+      startTremolo();
+    }
+
+    function startTremolo() {
+      if (!ctx || ctx.state === 'closed') return;
+      var now = ctx.currentTime;
+      masterGain.gain.cancelScheduledValues(now);
+      masterGain.gain.linearRampToValueAtTime(0.42, now + 3);
+      masterGain.gain.linearRampToValueAtTime(0.28, now + 7);
+      tremoloId = setTimeout(startTremolo, 7000);
     }
 
     function fadeIn() {
-      if (!ctx || ctx.state === 'closed') createAmbient();
+      if (!ctx || ctx.state === 'closed') buildEngine();
       if (ctx.state === 'suspended') ctx.resume();
-      gainNode.gain.cancelScheduledValues(ctx.currentTime);
-      gainNode.gain.setValueAtTime(gainNode.gain.value || 0, ctx.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.25, ctx.currentTime + 2);
+      clearTimeout(tremoloId);
+      var now = ctx.currentTime;
+      masterGain.gain.cancelScheduledValues(now);
+      masterGain.gain.setValueAtTime(0, now);
+      masterGain.gain.linearRampToValueAtTime(0.35, now + 2.5);
+      startTremolo();
     }
 
     function fadeOut(cb) {
-      if (!ctx || !gainNode) { if (cb) cb(); return; }
-      gainNode.gain.cancelScheduledValues(ctx.currentTime);
-      gainNode.gain.setValueAtTime(gainNode.gain.value, ctx.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0, ctx.currentTime + 1.5);
+      clearTimeout(tremoloId);
+      if (!ctx || !masterGain) { if (cb) cb(); return; }
+      var now = ctx.currentTime;
+      masterGain.gain.cancelScheduledValues(now);
+      masterGain.gain.setValueAtTime(masterGain.gain.value, now);
+      masterGain.gain.linearRampToValueAtTime(0, now + 2);
       setTimeout(function() {
         if (ctx && ctx.state !== 'closed') ctx.suspend();
         if (cb) cb();
-      }, 1600);
+      }, 2100);
     }
 
     btn.addEventListener('click', function() {
