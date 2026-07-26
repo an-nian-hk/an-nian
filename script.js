@@ -144,50 +144,34 @@ const WA_NUMBER = '85298593507';
 })();
 
 
-/* ========== Background Music ========== */
-var bgm = document.getElementById('bgm');
-var btn = document.getElementById('musicBtn');
+/* ========== Welcome + BGM ========== */
+(function() {
+  var overlay = document.getElementById('welcomeOverlay');
+  var btn     = document.getElementById('welcomeBtn');
+  var bgm     = document.getElementById('bgm');
+  var toggle  = document.getElementById('bgmToggle');
+  if (!overlay || !btn) return;
 
-if (bgm && btn) {
-  bgm.volume = 0;
-  bgm.muted = true;
-  bgm.load();
+  var iconPlay  = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+  var iconPause = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
 
-  function unmuteFade() {
-    bgm.muted = false;
-    var vol = 0;
-    var fade = setInterval(function() {
-      vol += 0.03;
-      if (vol >= 0.3) { vol = 0.3; clearInterval(fade); }
-      bgm.volume = vol;
-    }, 200);
+  // BGM toggle
+  if (bgm && toggle) {
+    toggle.onclick = function() {
+      if (bgm.paused) { bgm.volume = 0.3; bgm.play(); }
+      else            { bgm.pause(); }
+    };
+    bgm.onplay  = function() { toggle.innerHTML = iconPause; toggle.classList.add('bgm-bar__btn--pause'); };
+    bgm.onpause = function() { toggle.innerHTML = iconPlay;  toggle.classList.remove('bgm-bar__btn--pause'); };
+    toggle.innerHTML = iconPlay;
   }
 
-  // Auto-start muted, unmute at 10s
-  bgm.play().then(function() {
-    setTimeout(unmuteFade, 10000);
-  }).catch(function() {
-    document.addEventListener('click', function start() {
-      bgm.muted = false;
+  // Click "進入網站" → fade overlay + start music
+  btn.addEventListener('click', function() {
+    overlay.classList.add('welcome-overlay--hidden');
+    if (bgm) {
       bgm.volume = 0.3;
-      bgm.play();
-      document.removeEventListener('click', start);
-    }, { once: true });
-  });
-
-  // Button: toggle pause OR unmute if playing-but-muted
-  btn.onclick = function() {
-    if (bgm.paused) {
-      bgm.muted = false;
-      bgm.volume = 0.3;
-      bgm.play();
-    } else if (bgm.muted) {
-      unmuteFade();
-    } else {
-      bgm.pause();
+      bgm.play().catch(function(){});
     }
-  };
-
-  bgm.onplay  = function() { btn.classList.add('music-btn--on'); };
-  bgm.onpause = function() { btn.classList.remove('music-btn--on'); };
-}
+  });
+})();
