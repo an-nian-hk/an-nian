@@ -22,6 +22,8 @@
   --color-primary-highlight: #e4ece8;
   --color-wa: #1f7a4d;
   --color-wa-hover: #155c3a;
+  --color-brand-accent: #9b6f3a;  /* 品牌暖銅色 */
+  --color-brand-accent-glow: rgba(155,111,58,0.15);
   --shadow-sm: 0 1px 2px rgba(40,38,30,0.06);
   --shadow-md: 0 4px 14px rgba(40,38,30,0.08);
   --shadow-lg: 0 14px 40px rgba(40,38,30,0.12);
@@ -45,6 +47,8 @@
   --color-primary-highlight: #2a3a32;
   --color-wa: #4ea36f;
   --color-wa-hover: #3f8a5c;
+  --color-brand-accent: #d4a84b;  /* 品牌暖金色 (深色模式) */
+  --color-brand-accent-glow: rgba(212,168,75,0.12);
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-md: 0 4px 14px rgba(0,0,0,0.4);
   --shadow-lg: 0 14px 40px rgba(0,0,0,0.5);
@@ -435,41 +439,82 @@ img[loading="lazy"] {
   transform: scale(1.15);
   box-shadow: 0 4px 12px rgba(31,77,63,.25);
 }
-/* ========== Brand Link Override (全站統一) ========== */
-/* 通用：所有品牌連結繼承父層顏色，移除預設連結樣式 */
-a[href*="an-nian-hk.github.io"] {
-  color: inherit;
+/* ========== Brand Link — 安念善終服務辦公室 (統一品牌識別) ========== */
+.brand-link {
+  color: var(--color-brand-accent);
   text-decoration: none;
-  font-weight: inherit;
-  transition: opacity var(--transition-fast);
+  font-weight: 600;
+  letter-spacing: .02em;
+  position: relative;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+  white-space: nowrap;
 }
-a[href*="an-nian-hk.github.io"]:hover {
-  text-decoration: underline;
-  opacity: 0.85;
+.brand-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: var(--color-brand-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.5;
 }
-/* Eyebrow 品牌連結繼承 primary 色 */
-.eyebrow a[href*="an-nian-hk.github.io"] {
-  color: inherit;
+.brand-link:hover {
+  color: var(--color-brand-accent);
+  text-shadow: 0 0 12px var(--color-brand-accent-glow);
 }
-/* Section title 內的品牌連結保持標題粗體 */
-.section__title a[href*="an-nian-hk.github.io"] {
-  font-weight: 700;
-}
-/* About text 內的品牌連結 */
-.about__text a[href*="an-nian-hk.github.io"] {
-  color: inherit;
-}
-/* Footer 品牌連結 */
-.footer__brand a[href*="an-nian-hk.github.io"] {
-  color: inherit;
-  font-family: inherit;
-  font-weight: 700;
-}
-.footer__bottom a[href*="an-nian-hk.github.io"] {
-  color: inherit;
-  text-decoration: none;
+.brand-link:hover::after {
+  transform: scaleX(1);
 }
 
+/* Header brand name */
+.brand__name .brand-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* Hero eyebrow */
+.eyebrow .brand-link {
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+
+/* Section title */
+.section__title .brand-link {
+  font-weight: 700;
+}
+.section__title .brand-link::after {
+  bottom: -3px;
+  height: 2px;
+}
+
+/* About text */
+.about__text .brand-link {
+  font-weight: 600;
+}
+
+/* Footer brand */
+.footer__brand .brand-link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: .03em;
+}
+
+/* Footer copyright */
+.footer__bottom .brand-link {
+  font-weight: 500;
+  font-size: var(--text-xs);
+  letter-spacing: .01em;
+}
+.footer__bottom .brand-link::after {
+  bottom: -1px;
+  height: 1px;
+}
 /* ========== 暖科技 Strategy (Redesigned) ========== */
 
 /* --- Section Wrapper --- */

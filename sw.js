@@ -1,4 +1,4 @@
-﻿// 安念善終 — Service Worker (PWA)
+﻿// 安念善終服務辦公室 — Service Worker (PWA)
 // Caches core assets for offline access and faster repeat loads
 var CACHE_NAME = 'an-nian-v1';
 var PRECACHE_URLS = [

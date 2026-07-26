@@ -1,4 +1,4 @@
-# 安念善終 — 一條龍善終服務 Website & Mobile PWA
+﻿# 安念善終服務辦公室 — 一條龍善終服務 Website & Mobile PWA
 
 陪你安放思念，從容送別所愛。
 
@@ -23,7 +23,7 @@ an-nian/
 
 | 元素 | 值 |
 |------|-----|
-| 品牌名 | 安念善終 |
+| 品牌名 | 安念善終服務辦公室 |
 | 標語 | 陪你安放思念，從容送別所愛 |
 | 主色 | 深墨綠 #1F4D3F |
 | 底圖色 | 米白 #F6F4EF |
@@ -57,4 +57,4 @@ npx serve .
 
 ---
 
-© 2026 安念善終 An Nian Shan Zhong. All rights reserved.
+© 2026 安念善終服務辦公室 An Nian Shan Zhong. All rights reserved.
