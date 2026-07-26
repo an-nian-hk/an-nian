@@ -153,19 +153,20 @@ if (bgm && btn) {
   bgm.muted = true;
   bgm.load();
 
-  // Auto-start muted (bypass autoplay policy), then unmute at 10s
+  function unmuteFade() {
+    bgm.muted = false;
+    var vol = 0;
+    var fade = setInterval(function() {
+      vol += 0.03;
+      if (vol >= 0.3) { vol = 0.3; clearInterval(fade); }
+      bgm.volume = vol;
+    }, 200);
+  }
+
+  // Auto-start muted, unmute at 10s
   bgm.play().then(function() {
-    setTimeout(function() {
-      bgm.muted = false;
-      var vol = 0;
-      var fade = setInterval(function() {
-        vol += 0.03;
-        if (vol >= 0.3) { vol = 0.3; clearInterval(fade); }
-        bgm.volume = vol;
-      }, 200);
-    }, 10000);
+    setTimeout(unmuteFade, 10000);
   }).catch(function() {
-    // Autoplay blocked: wait for first user click anywhere
     document.addEventListener('click', function start() {
       bgm.muted = false;
       bgm.volume = 0.3;
@@ -174,12 +175,14 @@ if (bgm && btn) {
     }, { once: true });
   });
 
-  // Button toggle
+  // Button: toggle pause OR unmute if playing-but-muted
   btn.onclick = function() {
     if (bgm.paused) {
       bgm.muted = false;
       bgm.volume = 0.3;
       bgm.play();
+    } else if (bgm.muted) {
+      unmuteFade();
     } else {
       bgm.pause();
     }
